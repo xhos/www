@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mark Kudriavtsev</title>
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      :root{--bg:#000;--text:#fff;--text-muted:#ccc;--accent:#999;--border:#333;--hover:#111}
+      [data-theme='light']{--bg:#fff;--text:#000;--text-muted:#333;--accent:#666;--border:#ddd;--hover:#f5f5f5}
+      body {
+        font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
+          'DejaVu Sans Mono', monospace;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 1.6;
+        background: var(--bg);
+        color: var(--text-muted);
+        padding: 40px 20px;
+        max-width: 700px;
+        margin: 0 auto;
+        min-height: 100vh;
+        transition: all 0.3s ease;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 32px;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 16px;
+      }
+      .title {
+        font-size: 24px;
+        font-weight: normal;
+      }
+      .subtitle {
+        color: var(--accent);
+        margin-top: 4px;
+      }
+      .theme-toggle {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 12px;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .theme-toggle:hover {
+        color: var(--text);
+      }
+      .section {
+        margin: 32px 0;
+      }
+      .section-title {
+        font-size: 18px;
+        font-weight: 900;
+        margin-bottom: 16px;
+        letter-spacing: 1px;
+        color: var(--text);
+      }
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 8px;
+        margin: 16px 0;
+      }
+      .skill {
+        padding: 6px 10px;
+        border: 1px solid var(--border);
+        text-align: center;
+        font-size: 12px;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      .skill:hover,
+      .skill.active {
+        background: var(--text);
+        color: var(--bg);
+      }
+      .experience-item {
+        margin: 16px 0;
+      }
+      .project-item {
+        margin: 16px 0;
+        padding: 16px;
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+      }
+      .project-item:hover {
+        border-color: var(--text);
+        background: var(--hover);
+      }
+      .project-item.expanded {
+        background: var(--hover);
+      }
+      .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 8px;
+      }
+      .project-tags {
+        color: var(--accent);
+        font-size: 12px;
+      }
+      .project-expanded {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        margin-top: 16px;
+      }
+      .project-item.expanded .project-expanded {
+        max-height: 200px;
+      }
+      .repo-link {
+        display: inline-block;
+        margin-top: 12px;
+        color: var(--text);
+        text-decoration: none;
+        font-size: 12px;
+        transition: color 0.2s;
+      }
+      .repo-link:hover {
+        color: var(--accent);
+      }
+      .project-item.hidden {
+        display: none;
+      }
+      .item-title {
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+      .item-meta {
+        color: var(--accent);
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+      .item-desc {
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .contact-link {
+        color: var(--text);
+        text-decoration: none;
+        padding: 8px 0 0 0;
+        transition: color 0.2s;
+      }
+      .contact-link:hover {
+        color: var(--accent);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div>
+        <div class="title">mark kudriavtsev//</div>
+        <div class="subtitle">developer, toronto</div>
+      </div>
+      <span class="theme-toggle" onclick="toggleTheme()">theme</span>
+    </div>
+
+    <div class="section">
+      <div class="section-title">about</div>
+      <p>
+        placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">experience</div>
+      <div class="experience-item">
+        <div class="item-title">technology analyst/developer intern</div>
+        <div class="item-meta">MPBSDP • may 2025 - current</div>
+      </div>
+      <div class="experience-item">
+        <div class="item-title">full stack developer</div>
+        <div class="item-meta">arial real estate • sep 2021 - aug 2023</div>
+        <div class="item-desc">
+          developed Node.js booking sync systems, React dashboards, Python marketing automation, and deployed with Docker & CI/CD tools.
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">skills</div>
+      <div class="skills">
+        <div class="skill" data-filter="go" onclick="filterProjects('go')">Go</div>
+        <div class="skill" data-filter="rust" onclick="filterProjects('rust')">Rust</div>
+        <div class="skill" data-filter="python" onclick="filterProjects('python')">Python</div>
+        <div class="skill" data-filter="cpp" onclick="filterProjects('cpp')">C++</div>
+        <div class="skill" data-filter="typescript" onclick="filterProjects('typescript')">
+          TypeScript
+        </div>
+        <div class="skill" data-filter="nodejs" onclick="filterProjects('nodejs')">Node.js</div>
+        <div class="skill" data-filter="nextjs" onclick="filterProjects('nextjs')">Next.js</div>
+        <div class="skill" data-filter="react" onclick="filterProjects('react')">React</div>
+        <div class="skill" data-filter="postgresql" onclick="filterProjects('postgresql')">
+          PostgreSQL
+        </div>
+        <div class="skill" data-filter="mongodb" onclick="filterProjects('mongodb')">MongoDB</div>
+        <div class="skill" data-filter="linux" onclick="filterProjects('linux')">Linux</div>
+        <div class="skill" data-filter="docker" onclick="filterProjects('docker')">Docker</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">projects</div>
+      <div class="project-item" data-tags="rust,ai,telegram" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="item-title">itanoru</div>
+          <div class="project-tags">Rust • AI • Telegram</div>
+        </div>
+        <div class="item-desc">rust-based Telegram API system with AI content processing</div>
+        <div class="project-expanded">
+          <p>
+            a sophisticated Telegram bot system built in Rust that processes user-generated content through various AI models. features include content moderation, automated responses, and integration with multiple machine learning APIs. the system handles high-throughput message processing with async Rust and provides detailed analytics on user interactions.
+          </p>
+          <a href="https://github.com/xhosdev/itanoru" class="repo-link" target="_blank"
+            >view source →</a
+          >
+        </div>
+      </div>
+      <div class="project-item" data-tags="go,cli,ai" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="item-title">melchior</div>
+          <div class="project-tags">Go • CLI • AI</div>
+        </div>
+        <div class="item-desc">Go CLI tool converting natural language to shell commands</div>
+        <div class="project-expanded">
+          <p>
+            CLI tool translating natural language to shell commands. built with Go for cross-platform compatibility using language models. features command validation, safety checks, interactive mode.
+          </p>
+          <a href="https://github.com/xhosdev/melchior" class="repo-link" target="_blank"
+            >view source →</a
+          >
+        </div>
+      </div>
+      <div class="project-item" data-tags="typescript,desktop,linux" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="item-title">aard</div>
+          <div class="project-tags">TypeScript • Desktop • Linux</div>
+        </div>
+        <div class="item-desc">custom Linux desktop shell built in TypeScript</div>
+        <div class="project-expanded">
+          <p>
+            minimal Linux desktop environment in TypeScript with Electron. features tiling window manager, customizable workspaces, keyboard navigation, JSON configuration.
+          </p>
+          <a href="https://github.com/xhosdev/aard" class="repo-link" target="_blank"
+            >view source →</a
+          >
+        </div>
+      </div>
+      <div class="project-item" data-tags="python,discord,music" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="item-title">evo</div>
+          <div class="project-tags">Python • Discord • Music</div>
+        </div>
+        <div class="item-desc">discord music bot with advanced integrations</div>
+        <div class="project-expanded">
+          <p>
+            Discord music bot with multiple audio sources, playlist management, voice automation. built with Python and discord.py. includes queue management, audio effects, web dashboard.
+          </p>
+          <a href="https://github.com/xhosdev/evo" class="repo-link" target="_blank"
+            >view source →</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">contact</div>
+      <div class="contact-links">
+        <a href="mailto:mark.kudriavtsev@pm.me" class="contact-link">mark.kudriavtsev@pm.me</a>
+        <a href="https://www.linkedin.com/in/markkudriavtsev/" target="_blank" class="contact-link">linkedin/mark-kudriavtsev</a>
+        <a href="https://github.com/xhos" target="_blank" class="contact-link">github/xhos</a>
+        <a href="https://www.instagram.com/mark.kdrv" target="_blank" class="contact-link">instagram/mark.kdrv</a>
+      </div>
+    </div>
+
+    <div
+      style="
+        margin-top: 64px;
+        padding: 16px 0;
+        border-top: 1px solid var(--border);
+        text-align: center;
+        color: var(--accent);
+        font-size: 11px;
+      "
+    >
+      fun fact! this website is only <span id="size">13.2</span>KB in total
+    </div>
+
+    <script>
+      function toggleTheme() {
+        const body = document.body;
+        const currentTheme = body.getAttribute('data-theme');
+        body.setAttribute('data-theme', currentTheme === 'light' ? '' : 'light');
+        localStorage.setItem('theme', currentTheme === 'light' ? 'dark' : 'light');
+      }
+
+      function toggleProject(element) {
+        element.classList.toggle('expanded');
+      }
+
+      let selectedSkills = new Set();
+      let projects, skills;
+
+      function toggleSkillFilter(skill) {
+        const filter = skill.dataset.filter;
+        if (selectedSkills.has(filter)) {
+          selectedSkills.delete(filter);
+          skill.classList.remove('active');
+        } else {
+          selectedSkills.add(filter);
+          skill.classList.add('active');
+        }
+        requestAnimationFrame(filterProjects);
+      }
+
+      function filterProjects() {
+        if (selectedSkills.size === 0) {
+          projects.forEach((project) => project.classList.remove('hidden'));
+        } else {
+          projects.forEach((project) => {
+            const tags = project.dataset.tags;
+            const hasMatch = Array.from(selectedSkills).some((skill) => tags.includes(skill));
+            if (hasMatch) {
+              project.classList.remove('hidden');
+            } else {
+              project.classList.add('hidden');
+              project.classList.remove('expanded');
+            }
+          });
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+        const theme = savedTheme || 'dark';
+        if (theme === 'light') document.body.setAttribute('data-theme', 'light');
+
+        projects = document.querySelectorAll('.project-item');
+        skills = document.querySelectorAll('.skill');
+
+        const sections = document.querySelectorAll('.section');
+        sections.forEach((s, i) =>
+          setTimeout(() => {
+            s.style.filter = 'brightness(0.3)';
+            s.style.transition = 'filter 0.6s ease';
+            setTimeout(() => {
+              s.style.filter = 'brightness(1)';
+            }, 100);
+          }, i * 150)
+        );
+
+        skills.forEach((skill) => {
+          skill.addEventListener('click', () => toggleSkillFilter(skill));
+        });
+
+        document.addEventListener('dblclick', () => {
+          selectedSkills.clear();
+          skills.forEach((s) => s.classList.remove('active'));
+          projects.forEach((p) => {
+            p.classList.remove('hidden');
+            p.classList.remove('expanded');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
