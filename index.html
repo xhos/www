@@ -173,21 +173,36 @@
     <div class="section">
       <div class="section-title">about</div>
       <p>
-        placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
+        I build small, fast systems—mostly in Go—with a bias toward clarity and reliability. 
+        Recent work: automating data conversion pipelines, gRPC services with Postgres, and a 
+        self-hosted stack I actually maintain. I care about tight feedback loops, minimal 
+        dependencies, and being honest about trade-offs.
       </p>
     </div>
 
     <div class="section">
       <div class="section-title">experience</div>
+
       <div class="experience-item">
         <div class="item-title">technology analyst/developer intern</div>
         <div class="item-meta">MPBSDP • may 2025 - current</div>
+        <div class="item-desc">
+          Go tooling for a centralized archival data platform: schema-aware converters, 
+          CLI utilities, and small services moving data between legacy formats and Postgres. 
+          Wrote gRPC/HTTP endpoints, added structured logging/metrics, and containerized the 
+          toolchain for reproducible runs (Docker + Nix). Collaborated with stakeholders on 
+          data contracts and failure modes.
+        </div>
       </div>
+
       <div class="experience-item">
         <div class="item-title">full stack developer</div>
         <div class="item-meta">arial real estate • sep 2021 - aug 2023</div>
         <div class="item-desc">
-          developed Node.js booking sync systems, React dashboards, Python marketing automation, and deployed with Docker & CI/CD tools.
+          Built a Node.js booking sync and a React/Next.js dashboard. Automated targeted email 
+          campaigns in Python. Deployed on a VPS using Docker and GitHub Actions; added basic 
+          observability (Grafana/Prometheus/Loki). Owned the pipeline end-to-end—from feature 
+          work to on-box debugging.
         </div>
       </div>
     </div>
@@ -198,82 +213,110 @@
         <div class="skill" data-filter="go" onclick="filterProjects('go')">Go</div>
         <div class="skill" data-filter="rust" onclick="filterProjects('rust')">Rust</div>
         <div class="skill" data-filter="python" onclick="filterProjects('python')">Python</div>
-        <div class="skill" data-filter="cpp" onclick="filterProjects('cpp')">C++</div>
-        <div class="skill" data-filter="typescript" onclick="filterProjects('typescript')">
-          TypeScript
-        </div>
-        <div class="skill" data-filter="nodejs" onclick="filterProjects('nodejs')">Node.js</div>
-        <div class="skill" data-filter="nextjs" onclick="filterProjects('nextjs')">Next.js</div>
+        <div class="skill" data-filter="typescript" onclick="filterProjects('typescript')">TypeScript</div>
         <div class="skill" data-filter="react" onclick="filterProjects('react')">React</div>
-        <div class="skill" data-filter="postgresql" onclick="filterProjects('postgresql')">
-          PostgreSQL
-        </div>
-        <div class="skill" data-filter="mongodb" onclick="filterProjects('mongodb')">MongoDB</div>
-        <div class="skill" data-filter="linux" onclick="filterProjects('linux')">Linux</div>
+        <div class="skill" data-filter="nextjs" onclick="filterProjects('nextjs')">Next.js</div>
+        <div class="skill" data-filter="grpc" onclick="filterProjects('grpc')">gRPC</div>
+        <div class="skill" data-filter="postgresql" onclick="filterProjects('postgresql')">PostgreSQL</div>
         <div class="skill" data-filter="docker" onclick="filterProjects('docker')">Docker</div>
+        <div class="skill" data-filter="linux" onclick="filterProjects('linux')">Linux</div>
+        <div class="skill" data-filter="nixos" onclick="filterProjects('nixos')">NixOS</div>
+        <div class="skill" data-filter="zfs" onclick="filterProjects('zfs')">ZFS</div>
       </div>
     </div>
 
     <div class="section">
       <div class="section-title">projects</div>
-      <div class="project-item" data-tags="rust,ai,telegram" onclick="toggleProject(this)">
+
+      <div class="project-item" data-tags="go,grpc,postgresql,docker,typescript,nextjs" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="item-title">arian</div>
+          <div class="project-tags">Go • gRPC • Postgres • Next.js</div>
+        </div>
+        <div class="item-desc">personal finance system: receipts, email logging, and clean data pipelines</div>
+        <div class="project-expanded">
+          <p>
+            Service-oriented backend in Go (gRPC + Postgres) with a Next.js frontend. Features: 
+            email-based transaction ingestion, receipt OCR/parsing, typed DB access, and 
+            containerized dev/prod via Compose. Designed around explicit schemas and background jobs.
+          </p>
+          <a href="https://github.com/xhosdev/arian" class="repo-link" target="_blank">view source →</a>
+        </div>
+      </div>
+
+      <div class="project-item" data-tags="rust,linux,desktop" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="item-title">logi-hypr</div>
+          <div class="project-tags">Rust • Hyprland • Linux</div>
+        </div>
+        <div class="item-desc">gesture daemon for Logitech MX on Wayland/Hyprland</div>
+        <div class="project-expanded">
+          <p>
+            Rust daemon that listens for the MX gesture button + scroll events and triggers 
+            user-defined actions. Focus on low-latency input handling, robust device discovery, 
+            and simple configuration.
+          </p>
+          <a href="https://github.com/xhosdev/logi-hypr" class="repo-link" target="_blank">view source →</a>
+        </div>
+      </div>
+
+      <div class="project-item" data-tags="rust,ai,telegram,docker" onclick="toggleProject(this)">
         <div class="project-header">
           <div class="item-title">itanoru</div>
           <div class="project-tags">Rust • AI • Telegram</div>
         </div>
-        <div class="item-desc">rust-based Telegram API system with AI content processing</div>
+        <div class="item-desc">telegram tooling with AI-assisted content processing</div>
         <div class="project-expanded">
           <p>
-            a sophisticated Telegram bot system built in Rust that processes user-generated content through various AI models. features include content moderation, automated responses, and integration with multiple machine learning APIs. the system handles high-throughput message processing with async Rust and provides detailed analytics on user interactions.
+            Rust system integrating the Telegram API with AI-backed processors. Async pipelines 
+            for high-throughput message handling, state cleanup, and analytics. Packaged with Docker.
           </p>
-          <a href="https://github.com/xhosdev/itanoru" class="repo-link" target="_blank"
-            >view source →</a
-          >
+          <a href="https://github.com/xhosdev/itanoru" class="repo-link" target="_blank">view source →</a>
         </div>
       </div>
+
       <div class="project-item" data-tags="go,cli,ai" onclick="toggleProject(this)">
         <div class="project-header">
           <div class="item-title">melchior</div>
           <div class="project-tags">Go • CLI • AI</div>
         </div>
-        <div class="item-desc">Go CLI tool converting natural language to shell commands</div>
+        <div class="item-desc">natural-language → shell command helper</div>
         <div class="project-expanded">
           <p>
-            CLI tool translating natural language to shell commands. built with Go for cross-platform compatibility using language models. features command validation, safety checks, interactive mode.
+            Cross-platform CLI that proposes shell commands from natural language. Interactive mode, 
+            guardrails, and model-agnostic adapters.
           </p>
-          <a href="https://github.com/xhosdev/melchior" class="repo-link" target="_blank"
-            >view source →</a
-          >
+          <a href="https://github.com/xhosdev/melchior" class="repo-link" target="_blank">view source →</a>
         </div>
       </div>
+
       <div class="project-item" data-tags="typescript,desktop,linux" onclick="toggleProject(this)">
         <div class="project-header">
           <div class="item-title">aard</div>
           <div class="project-tags">TypeScript • Desktop • Linux</div>
         </div>
-        <div class="item-desc">custom Linux desktop shell built in TypeScript</div>
+        <div class="item-desc">custom Linux desktop shell, minimal and keyboard-driven</div>
         <div class="project-expanded">
           <p>
-            minimal Linux desktop environment in TypeScript with Electron. features tiling window manager, customizable workspaces, keyboard navigation, JSON configuration.
+            Lightweight desktop environment in TypeScript with focus on tiling, workspaces, and 
+            JSON-based configuration. Pragmatic over flashy.
           </p>
-          <a href="https://github.com/xhosdev/aard" class="repo-link" target="_blank"
-            >view source →</a
-          >
+          <a href="https://github.com/xhosdev/aard" class="repo-link" target="_blank">view source →</a>
         </div>
       </div>
-      <div class="project-item" data-tags="python,discord,music" onclick="toggleProject(this)">
+
+      <div class="project-item" data-tags="python,discord,docker" onclick="toggleProject(this)">
         <div class="project-header">
           <div class="item-title">evo</div>
-          <div class="project-tags">Python • Discord • Music</div>
+          <div class="project-tags">Python • Discord • Docker</div>
         </div>
-        <div class="item-desc">discord music bot with advanced integrations</div>
+        <div class="item-desc">discord music bot with queueing and multi-source playback</div>
         <div class="project-expanded">
           <p>
-            Discord music bot with multiple audio sources, playlist management, voice automation. built with Python and discord.py. includes queue management, audio effects, web dashboard.
+            Playback from multiple sources, queue management, voice automation, and a small web 
+            dashboard. Iterated across stacks; stabilized around Python + Docker.
           </p>
-          <a href="https://github.com/xhosdev/evo" class="repo-link" target="_blank"
-            >view source →</a
-          >
+          <a href="https://github.com/xhosdev/evo" class="repo-link" target="_blank">view source →</a>
         </div>
       </div>
     </div>
